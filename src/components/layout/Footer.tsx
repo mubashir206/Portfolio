@@ -3,7 +3,6 @@
 import { startTransition, useEffect, useState } from "react";
 import { site } from "@/data/site";
 
-/** Stable copyright year — avoid `new Date()` during prerender. */
 const COPYRIGHT_YEAR = 2026;
 
 export function Footer() {
