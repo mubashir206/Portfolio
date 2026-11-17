@@ -160,7 +160,8 @@ export function Hero() {
   const fancy = useFancyMotion();
   const mobile = useIsMobile();
   const reduced = usePrefersReducedMotion();
-  const orbitSpin = !mobile && !reduced;
+  /* CSS orbit + marquee stay on for mobile; only respect reduced-motion */
+  const orbitSpin = !reduced;
   const [first = "Mubashir", ...rest] = site.name.split(" ");
   const last = rest.join(" ") || first;
   const marquee = [...SIGNAL_WORDS, ...SIGNAL_WORDS];
@@ -264,11 +265,9 @@ export function Hero() {
 
           <div className="relative mx-auto w-full max-w-[280px] sm:max-w-[340px] lg:max-w-none">
             <SignalOrbit spin={orbitSpin} />
-            {orbitSpin && (
-              <p className="mt-5 text-center font-mono text-[10px] uppercase tracking-[0.22em] text-fg-muted lg:mt-8">
-                Signal orbit
-              </p>
-            )}
+            <p className="mt-5 text-center font-mono text-[10px] uppercase tracking-[0.22em] text-fg-muted lg:mt-8">
+              Signal orbit
+            </p>
           </div>
         </div>
       </div>
@@ -276,9 +275,7 @@ export function Hero() {
       {/* Full-bleed tech marquee — true edge-to-edge */}
       <div className="marquee-fade relative mt-10 w-full border-y border-border py-4 md:mt-14 md:py-5">
         <div
-          className={`flex w-max gap-8 ${
-            reduced || mobile ? "" : "marquee-track"
-          }`}
+          className={`flex w-max gap-8 ${reduced ? "" : "marquee-track"}`}
         >
           {marquee.map((word, i) => (
             <span

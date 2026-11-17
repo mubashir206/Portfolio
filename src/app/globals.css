@@ -239,13 +239,17 @@ img {
     animation: none !important;
   }
 
+  /* Slightly slower on phones — still moves, lighter on battery */
   .marquee-track {
     animation-duration: 55s;
   }
 
-  .orbit-spin,
+  .orbit-spin {
+    animation-duration: 18s;
+  }
+
   .orbit-spin-rev {
-    animation: none;
+    animation-duration: 48s;
   }
 }
 
